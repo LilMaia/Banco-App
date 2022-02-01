@@ -43,29 +43,31 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     }
 
     private fun loginValidation() {
-        val isPasswordValid = isPasswordValid()
-        val isEmailValid = emailValidation()
-        if (isPasswordValid && isEmailValid) {
+//        val isPasswordValid = isPasswordValid()
+//        val isEmailValid = emailValidation()
+//        if (isPasswordValid && isEmailValid) {
             doLogin()
-        }
+//        }
     }
 
     private fun doLogin() {
         _loading.postValue(true)
         viewModelScope.launch {
-            try {
-                loginRepository.userLogin(
-                    LoginPayload(currentUsername, currentPassword),
-                    _rememberSwitch.value!!
-                )
-                _loginSuccess.postValue(Unit)
-            } catch (e: Exception) {
-                when (e) {
-                    is UnknownHostException -> _loginError.postValue("Sem acesso a internet")
-                    is NotFoundEmailException -> _loginError.postValue(e.message)
-                    else -> _loginError.postValue("Erro desconhecido")
-                }
-            }
+//            try {
+//                loginRepository.userLogin(
+//                    LoginPayload(currentUsername, currentPassword),
+//                    _rememberSwitch.value!!
+//                )
+//                _loginSuccess.postValue(Unit)
+//            } catch (e: Exception) {
+//                when (e) {
+//                    is UnknownHostException -> _loginError.postValue("Sem acesso a internet")
+//                    is NotFoundEmailException -> _loginError.postValue(e.message)
+//                    else -> _loginError.postValue("Erro desconhecido")
+//                }
+//            }
+//            _loading.postValue(false)
+            _loginSuccess.postValue(Unit)
             _loading.postValue(false)
         }
     }
